@@ -9,7 +9,7 @@ const initState={
     user:'',
     type:'',
     age: ''
-}
+};
 
 export function auth(state=initState, action) {
     console.log(action)

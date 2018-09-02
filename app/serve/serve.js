@@ -3,7 +3,8 @@
  */
 const express = require('express')
 // const model = require('./model')
-
+const bodyParser = require('body-parser') // 接收post
+const cookieParser = require('cookie-parser')
 const userRouter = require('./user')
 
 // mongoose.connection.on('connected', function () {
@@ -13,6 +14,8 @@ const userRouter = require('./user')
 // 新建app
 const app = express()
 
+app.use(cookieParser())
+app.use(bodyParser.json())
 app.use('/user',userRouter)
 
 // 建表

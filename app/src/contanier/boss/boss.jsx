@@ -6,7 +6,7 @@ class Boss extends React.Component {
     }
 
     render () {
-        return <div>boss</div>
+        return <div>bossinfor</div>
     }
 }
 

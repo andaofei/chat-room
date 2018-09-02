@@ -36,7 +36,7 @@ ReactDOM.render(
             <Route path="/app" component={App}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <Route path="/boss" component={Boss}/>
+            <Route path="/bossinfo" component={Boss}/>
             <Redirect to="/login"/>
         </Switch>
         </div>
