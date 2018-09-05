@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux'
 import Button from 'antd/lib/button';
 import {login, getUserData} from './Auth.redux'

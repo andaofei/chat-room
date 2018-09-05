@@ -11,6 +11,7 @@ import AuthRoute from './component/authroute/authroute'
 import Login from './contanier/login/login';
 import Register from './contanier/register/register';
 import Boss from './contanier/boss/boss';
+import Genius from './contanier/genius/index';
 import registerServiceWorker from './registerServiceWorker';
 
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -37,6 +38,7 @@ ReactDOM.render(
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/bossinfo" component={Boss}/>
+            <Route path="/geniusinfo" component={Genius}/>
             <Redirect to="/login"/>
         </Switch>
         </div>
