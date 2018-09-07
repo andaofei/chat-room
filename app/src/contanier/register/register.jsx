@@ -6,7 +6,7 @@ import {regisger} from '../../redux/user.redux'
 import {Redirect} from 'react-router-dom'
 import './register.css'
 @connect(
-    state=>state.user,
+    state => state.user,
     {regisger}
 )
 
@@ -22,41 +22,44 @@ class Register extends React.Component {
         };
         this.handleRegister = this.handleRegister.bind(this)
     }
+
     // 输入框
     handleChange(key, val) {
         this.setState({
             [key]: val
         })
     }
+
     // 注册
     handleRegister() {
         console.log(this.props)
         this.props.regisger(this.state)
     }
-    render () {
+
+    render() {
         const RadioItem = Radio.RadioItem
         return <div>
-            {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/>: null}
+            {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
             <Logo/>
             <WingBlank>
                 <List>
-                    {this.props.msg ?<p className="errorMsg">{this.props.msg}</p>:null}
-                    <InputItem onChange={v=> this.handleChange('user', v)}>用户名</InputItem>
+                    {this.props.msg ? <p className="errorMsg">{this.props.msg}</p> : null}
+                    <InputItem onChange={v => this.handleChange('user', v)}>用户名</InputItem>
                     <WhiteSpace/>
 
-                    <InputItem type="password" onChange={v=> this.handleChange('pwd', v)}>密码</InputItem>
+                    <InputItem type="password" onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
                     <WhiteSpace/>
 
-                    <InputItem type="password" onChange={v=> this.handleChange('repeatpwd', v)}>确认密码</InputItem>
+                    <InputItem type="password" onChange={v => this.handleChange('repeatpwd', v)}>确认密码</InputItem>
                     <WhiteSpace/>
 
                     <RadioItem checked={this.state.type === 'genius'}
-                        onChange={() =>this.handleChange('type', 'genius')}>
+                               onChange={() => this.handleChange('type', 'genius')}>
                         牛人
                     </RadioItem>
 
                     <RadioItem checked={this.state.type === 'boss'}
-                               onChange={() =>this.handleChange('type', 'boss')}>
+                               onChange={() => this.handleChange('type', 'boss')}>
                         BOSS
                     </RadioItem>
                     <WhiteSpace/>
