@@ -9,6 +9,7 @@ import {getRedirectPath} from '../util'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
+const LOGOUT = 'LOGOUT'
 const initState = {
     redirectTo: '',
     msg: '',
@@ -27,6 +28,8 @@ export function user(state = initState, action) {
         //     return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload};
         case LOAD_DATA:
             return {...state, ...action.payload};
+        case LOGOUT:
+            return {...initState, redirectTo: '/login'};
         case ERROR_MSG:
             return {...state, msg: action.msg, isAuth: false};
         default:
@@ -52,7 +55,7 @@ export function loadData(userinfo) {
 
 // 更新成功
 function authSuccess(obj) {
-    const {pwd, ...data} = obj // 过滤pwd
+    const {pwd, ...data} = obj; // 过滤pwd
     return {type: AUTH_SUCCESS, payload: data}
 }
 
@@ -70,7 +73,6 @@ export function login({user, pwd}) {
         axios.post('/user/login', {user, pwd})
             .then((res) => {
                 if (res.status === 200 && res.data.code === 0) {
-                    console.log(res.data.data)
                     dispatch(authSuccess(res.data.data))
                 }
                 else {
@@ -114,4 +116,9 @@ export function update(data) {
                 }
             })
     }
+}
+
+//注销
+export function logoutSubmit() {
+    return {type: LOGOUT}
 }

@@ -4,6 +4,20 @@ import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {login} from '../../redux/user.redux'
+
+function hello(){
+    console.log('hello imooc I love React')
+}
+function WrapperHello(fn){
+    return function(){
+        console.log('before say hello')
+        fn()
+        console.log('after say hello')
+    }
+}
+hello = WrapperHello(hello)
+hello();
+
 @connect(
     state => state.user,
     {login}

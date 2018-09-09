@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'; // 组件
 import './index.css';
 import './config';
 import 'antd-mobile/dist/antd-mobile.css';
-import App from './App';
+// import App from './App';
 // import Auth from './auth/index';
 // import Dashboard from './dashboard';
 import Dashboard from './component/dashboard/index'
@@ -33,15 +33,15 @@ ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
             <div>
-                <AuthRoute></AuthRoute>
+                <AuthRoute/>
                 {/* Switch只会命中第一个*/}
                 <Switch>
                     {/*<App />*/}
-                    <Route path="/app" component={App}/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/register" component={Register}/>
+                    {/*<Route path="/app" component={App}/>*/}
                     <Route path="/bossinfo" component={Boss}/>
                     <Route path="/geniusinfo" component={GeniusInfo}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Register}/>
                     {/*<Redirect to="/login"/>*/}
                     <Route component={Dashboard}></Route>
                 </Switch>

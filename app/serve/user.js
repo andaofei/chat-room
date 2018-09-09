@@ -58,7 +58,6 @@ Router.post('/register', function (req, res) {
 // 获取登陆状态
 Router.get('/info', function (req, res) {
     // return res.json({code: 1})
-    console.log(req, '获取登陆状态')
     const {userid} = req.cookies
     if (!userid) {
         return res.json({code: 1})
