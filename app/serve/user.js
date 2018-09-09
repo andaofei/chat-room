@@ -8,14 +8,20 @@ const User = model.getModel('user')
 const utils = require('utility')
 const _filter = {'pwd': 0, '__v': 0}
 // 查询用户列表
-Router.get('/list', function (req, res) {
-    // User.remove({}, function (e,d) {}); //清除list列表
-    User.find({}, function (err, doc) {
-        return res.json(doc)
+// Router.get('/list', function (req, res) {
+//     // User.remove({}, function (e,d) {}); //清除list列表
+//     User.find({}, function (err, doc) {
+//         return res.json(doc)
+//     })
+//
+// });
+Router.get('/list',function(req, res){
+    const { type } = req.query
+    // User.remove({},function(e,d){})
+    User.find({type},function(err,doc){
+        return res.json({code:0,data:doc})
     })
-
-});
-
+})
 // 登陆
 Router.post('/login', function (req, res) {
     console.log(req.body)
@@ -52,6 +58,7 @@ Router.post('/register', function (req, res) {
 // 获取登陆状态
 Router.get('/info', function (req, res) {
     // return res.json({code: 1})
+    console.log(req, '获取登陆状态')
     const {userid} = req.cookies
     if (!userid) {
         return res.json({code: 1})
@@ -66,7 +73,21 @@ Router.get('/info', function (req, res) {
     })
     // 用户有没有cookie
 });
-
+// 更新信息
+Router.post('/update',function(req,res){
+    const userid = req.cookies.userid
+    if (!userid) {
+        return json.dumps({code:1})
+    }
+    const body = req.body
+    User.findByIdAndUpdate(userid,body,function(err,doc){
+        const data = Object.assign({},{
+            user:doc.user,
+            type:doc.type
+        },body);
+        return res.json({code:0,data})
+    })
+});
 function md5Pwd(pwd) {
     const salt = 'lasdoiqw2131@!!'
     return utils.md5(utils.md5(pwd + salt))

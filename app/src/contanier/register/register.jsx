@@ -10,7 +10,6 @@ import './register.css'
     {regisger}
 )
 
-
 class Register extends React.Component {
     constructor(props) {
         super(props)
@@ -32,14 +31,13 @@ class Register extends React.Component {
 
     // 注册
     handleRegister() {
-        console.log(this.props)
         this.props.regisger(this.state)
     }
 
     render() {
         const RadioItem = Radio.RadioItem
         return <div>
-            {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
+            {this.props.redirectTo? <Redirect to={this.props.redirectTo}/> : null}
             <Logo/>
             <WingBlank>
                 <List>

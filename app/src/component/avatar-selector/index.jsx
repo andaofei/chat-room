@@ -1,6 +1,6 @@
 import React from 'react'
 import {Grid, List} from 'antd-mobile'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'// 验证属性
 class AvatarSelector extends React.Component {
     static propTypes = {
         selectAvatar: PropTypes.func.isRequired
