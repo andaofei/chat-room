@@ -13,6 +13,7 @@ import Login from './contanier/login/login';
 import Register from './contanier/register/register';
 import Boss from './contanier/boss/boss';
 import GeniusInfo from './contanier/genius/index';
+import Chat from './component/chat/index'
 import registerServiceWorker from './registerServiceWorker';
 
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -42,6 +43,7 @@ ReactDOM.render(
                     <Route path="/geniusinfo" component={GeniusInfo}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/chat/:user" component={Chat}/>
                     {/*<Redirect to="/login"/>*/}
                     <Route component={Dashboard}></Route>
                 </Switch>
