@@ -6,6 +6,8 @@ const express = require('express')
 const bodyParser = require('body-parser') // 接收post
 const cookieParser = require('cookie-parser')
 const userRouter = require('./user')
+const model = require('./module')
+const Chat = model.getModel('chat')
 
 // mongoose.connection.on('connected', function () {
 //     console.log('mongoose is connecting')
@@ -21,7 +23,16 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 io.on('connection', function (socket) {
-    console.log('user login')
+    // console.log('user login')
+    socket.on('sendmsg', function (data) {
+        console.log('接收到：', data)
+        const {from, to, msg} = data
+        const chatid = [from, to].sort().join('_'); // 聊天id
+        Chat.create({chatid, from, to, content: msg}, function (err, doc) {
+            io.emit('recvmsg', Object.assign({}, doc._doc))
+        })
+        // io.emit('recvmsg', data) // 全局广播
+    })
 });
 
 app.use(cookieParser())

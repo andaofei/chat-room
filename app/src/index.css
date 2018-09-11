@@ -46,6 +46,7 @@ body {
 #chat-page .am-grid-text{
     margin-top: 0;
 }
+* { touch-action: none; }
 .stick-footer{
     z-index:10;
     position: absolute;

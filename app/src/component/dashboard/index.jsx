@@ -6,16 +6,20 @@ import {Switch, Route} from 'react-router-dom'
 import Boss from '../boss/index'
 import Genius from '../genius/index'
 import User from '../UserCenter/index'
-
-
-function Msg() {
-    return <h2>Msg</h2>
-}
+import Msg from '../msg/index'
+import {getMsgList, recvMsg} from '../../redux/chat'
 
 @connect(
-    state => state
+    state => state,
+    {getMsgList, recvMsg}
 )
 class Dashboard extends React.Component {
+    componentDidMount() {
+        if (!this.props.chat.chatmsg.length) { // 判断是都有数据
+            this.props.getMsgList()
+            this.props.recvMsg()
+        }
+    }
     render() {
         const user = this.props.user
         const {pathname} = this.props.location
