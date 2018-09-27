@@ -30,7 +30,7 @@ const store = createStore(reducers,
 // console.log(store.getState());
 
 // boss genius me msg 4个页面
-ReactDOM.render(
+ReactDOM.hydrate(
     (<Provider store={store}>
         <BrowserRouter>
             <div>
@@ -44,7 +44,7 @@ ReactDOM.render(
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/chat/:user" component={Chat}/>
-                    {/*<Redirect to="/login"/>*/}
+                    <Redirect to="/login"/>
                     <Route component={Dashboard}></Route>
                 </Switch>
             </div>
